@@ -12,6 +12,10 @@
             templateUrl: '/app/components/members/membersView.html',
             controller: 'MembersCtrl',
             controllerAs: 'vm'
+          }).when('/members/:member_id', {
+            templateUrl: '/app/components/members/memberView.html',
+            controller: 'MemberCtrl',
+            controllerAs: 'vm'
           });
       }])
 })();

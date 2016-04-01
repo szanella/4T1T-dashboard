@@ -7,31 +7,41 @@ var Member = require('./models/member');
 module.exports = function(app) {
 
     // api ---------------------------------------------------------------------
-    // get all todos
+    // get all members
     app.get('/api/members', function(req, res) {
 
-        // use mongoose to get all todos in the database
-        Member.find(function(err, todos) {
+        // use mongoose to get all members in the database
+        Member.find(function(err, members) {
 
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if (err)
                 res.send(err)
 
-            res.json(todos); // return all todos in JSON format
+            res.json(members); // return all members in JSON format
         });
     });
 
-    // create todo and send back all todos after creation
+    app.get('/api/members/:member_id', function(req, res) {
+
+        // use mongoose to get all members in the database
+        Member.findById(req.params.member_id, function(err, member) {
+
+            if (err)
+                res.send(err)
+
+            res.json(member); // return all members in JSON format
+        });
+    });
+
     app.post('/api/members', function(req, res) {
 
-        // create a todo, information comes from AJAX request from Angular
+        console.log(req.body);
         Member.create({
-            name : req.body.text
-        }, function(err, todo) {
+            name : req.body.name,
+            favouriteHeroes : []
+        }, function(err, member) {
             if (err)
                 res.send(err);
 
-            // get and return all the todos after you create another
             Member.find(function(err, members) {
                 if (err)
                     res.send(err)
@@ -41,7 +51,6 @@ module.exports = function(app) {
 
     });
 
-    // delete a todo
     app.delete('/api/members/:member_id', function(req, res) {
         Member.remove({
             _id : req.params.member_id
@@ -49,7 +58,6 @@ module.exports = function(app) {
             if (err)
                 res.send(err);
 
-            // get and return all the todos after you create another
             Member.find(function(err, members) {
                 if (err)
                     res.send(err)
