@@ -34,7 +34,6 @@ module.exports = function(app) {
 
     app.post('/api/members', function(req, res) {
 
-        console.log(req.body);
         Member.create({
             name : req.body.name,
             favouriteHeroes : []
