@@ -1,0 +1,13 @@
+/* Brand styling */
+
+.navbar-brand {
+  padding: 0;
+}
+.navbar-brand > img {
+  height: 100%;
+  width: auto;
+}
+
+.navbar-brand > span {
+  margin: 0 10px;
+}
