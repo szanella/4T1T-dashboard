@@ -29,6 +29,12 @@
           label: 'Members',
           url: '/members',
           active: false
+        },
+        {
+          id: 'heroes',
+          label: 'Heroes',
+          url: '/heroes',
+          active: false
         }
       ];
 

@@ -3,8 +3,17 @@
        Schema = mongoose.Schema;
 
     var memberSchema = new Schema({
-        name : String,
-        favouriteHeroes : [String]
+        name : {
+          type : String,
+          required : true
+        },
+        favouriteHeroes : [{
+          position: String,
+          name: String,
+          degree: Number
+        }]
+    }, {
+      collection : 'members'
     });
 
     module.exports = mongoose.model('Member', memberSchema);

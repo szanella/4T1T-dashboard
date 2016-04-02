@@ -1,7 +1,7 @@
 // app/routes.js
 
 // load the todo model
-var Member = require('./models/member');
+var Member = require('../models/member');
 
 // expose the routes to our app with module.exports
 module.exports = function(app) {
