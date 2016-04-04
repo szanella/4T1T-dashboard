@@ -1,0 +1,38 @@
+<html ng-app="4T1T">
+  <head>
+    <base href="/" />
+
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-toastr/dist/angular-toastr.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/navbar.css" />
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.min.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+
+    <script src="app/app.module.js"></script>
+    <script src="app/app.routes.js"></script>
+    <script src="app/app.config.js"></script>
+
+    <!-- Load Components -->
+    <script src="app/components/home/homeController.js"></script>
+    <script src="app/components/members/membersController.js"></script>
+    <script src="app/components/members/membersService.js"></script>
+    <script src="app/components/members/memberController.js"></script>
+    <script src="app/components/heroes/heroesController.js"></script>
+    <script src="app/components/heroes/heroesService.js"></script>
+
+    <!-- Load Shared -->
+    <script src="app/shared/header/headerDirective.js"></script>
+
+  </head>
+  <body>
+    <div class="container">
+      <div ng-view></div>
+      <footer class="footer"></footer>
+    </div>
+  </body>
+</html>
