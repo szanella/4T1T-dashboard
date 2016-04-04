@@ -26,6 +26,6 @@
     require('./app/routes/routes')(app);
 
     // listen (start app with node server.js) ======================================
-    var port = process.env.PORT || CONFIG.port;
+    var port = 8080;
     app.listen(port);
     console.log("App listening on port " + port);
