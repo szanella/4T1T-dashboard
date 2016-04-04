@@ -8,6 +8,9 @@
         get : function() {
           return $http.get('/api/heroes');
         },
+        getPaginated : function(offset, limit) {
+          return $http.get('/api/heroes?offset=' + offset + '&limit=' + limit);
+        },
         getSingle : function(id) {
           return $http.get('/api/heroes/' + id);
         },

@@ -1,3 +1,3 @@
 (function() {
-  angular.module('4T1T', ['ngRoute']);
+  angular.module('4T1T', ['ngRoute', 'toastr']);
 })();

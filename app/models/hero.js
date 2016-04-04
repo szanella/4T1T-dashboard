@@ -10,7 +10,8 @@
         mainAttr : {
           type : String,
           enum : ['STR', 'AGI', 'INT']
-        }
+        },
+        imgPrefix : String
     }, {
       collection : 'heroes'
     });

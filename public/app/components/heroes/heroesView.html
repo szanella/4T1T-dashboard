@@ -3,17 +3,32 @@
 <div class="row">
   <div class="col-md-8 col-sm-8 col-xs-12">
     <ul class="list-group">
-       <a href="/heroes/{{hero._id}}" class="list-group-item" ng-repeat="hero in vm.heroes">{{hero.name}}</a>
+      <a href="/heroes/{{hero._id}}" class="list-group-item" ng-repeat="hero in vm.heroes">
+        <span class="badge">{{hero.mainAttr}}</span>
+        <img src="assets/img/heroes/59x33/{{hero.imgPrefix}}_sb.png" />
+        {{hero.name}}
+      </a>
     </ul>
+    <nav>
+      <ul class="pagination">
+        <li ng-repeat="page in vm.pages" ng-class="{'active' : page === vm.currentPage}"><a href="#" ng-click="vm.goToPage(page)">{{page+1}}</a></li>
+      </ul>
+    </nav>
   </div>
   <div class="col-md-4 col-sm-4 col-xs-12">
     <div class="form-group">
-       <label for="heroName">Hero Name</label>
-       <input type="text" name="heroName" class="form-control" ng-model="vm.newHero.name" placeholder="Name">
-        <label for="heroMainAttr">Hero Main Attribute (STR, AGI, INT)</label>
-        <input type="text" name="heroMainAttr" class="form-control" ng-model="vm.newHero.mainAttr" placeholder="Main Attribute">
-     </div>
-     <button type="submit" class="btn btn-primary" ng-click="vm.createHero()">Add</button>
- </div>
+      <label for="heroName">Hero Name</label>
+      <input type="text" id="heroName" class="form-control" ng-model="vm.newHero.name" placeholder="Name">
+      <label for="heroMainAttr">Hero Main Attribute (STR, AGI, INT)</label>
+      <select id="heroMainAttr" class="form-control" ng-model="vm.newHero.mainAttr">
+        <option value="STR">STR</option>
+        <option value="AGI">AGI</option>
+        <option value="INT">INT</option>
+      </select>
+      <label for="heroImgPrefix">Image Prefix</label>
+      <input type="text" id="heroImgPrefix" class="form-control" ng-model="vm.newHero.imgPrefix" placeholder="Image Prefix">
+    </div>
+    <button type="submit" class="btn btn-primary" ng-click="vm.createHero()">Add</button>
   </div>
+</div>
 </div>
