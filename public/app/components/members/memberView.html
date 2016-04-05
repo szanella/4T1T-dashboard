@@ -1,17 +1,22 @@
 <header active-option="members"></header>
 <h1>{{vm.member.name}}</h1>
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <h2 class="panel-title">Favourite Heroes</h2>
+  <div class="panel-heading clearfix">
+    <h2 class="panel-title pull-left">Favourite Heroes</h2>
+    <span class="pull-right">
+      <button class="btn btn-sm" ng-click="vm.toggleEditMode()" ng-class="{'btn-primary' : vm.editMode, 'btn-info' : !vm.editMode}">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </button>
+    </span>
   </div>
   <div class="panel-body">
     <div class="row">
-      <role-column role="Safelane" heroes="vm.member.favByRole['safelane']"></role-column>
-      <role-column role="Mid" heroes="vm.member.favByRole['mid']"></role-column>
-      <role-column role="Support" heroes="vm.member.favByRole['support']"></role-column>
-      <role-column role="Offlane" heroes="vm.member.favByRole['offlane']"></role-column>
-      <role-column role="Roaming" heroes="vm.member.favByRole['roaming']"></role-column>
-      <role-column role="Jungle" heroes="vm.member.favByRole['jungle']"></role-column>
+      <role-column role="Safelane" heroes="vm.member.favByRole['safelane']" edit-mode="vm.editMode" toggle-edit-mdoe="vm.toggleEditMode"></role-column>
+      <role-column role="Mid" heroes="vm.member.favByRole['mid']" edit-mode="vm.editMode" toggle-edit-mdoe="vm.toggleEditMode"></role-column>
+      <role-column role="Support" heroes="vm.member.favByRole['support']" edit-mode="vm.editMode" toggle-edit-mdoe="vm.toggleEditMode"></role-column>
+      <role-column role="Offlane" heroes="vm.member.favByRole['offlane']" edit-mode="vm.editMode" toggle-edit-mdoe="vm.toggleEditMode"></role-column>
+      <role-column role="Roaming" heroes="vm.member.favByRole['roaming']" edit-mode="vm.editMode" toggle-edit-mdoe="vm.toggleEditMode"></role-column>
+      <role-column role="Jungle" heroes="vm.member.favByRole['jungle']" edit-mode="vm.editMode" toggle-edit-mdoe="vm.toggleEditMode"></role-column>
     </div>
   </div>
 </div>

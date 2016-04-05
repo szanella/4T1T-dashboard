@@ -9,7 +9,9 @@
         templateUrl: 'app/components/members/roleColumn.html',
         scope: {
           role: '@',
-          heroes: '='
+          heroes: '=',
+          editMode: '=',
+          toggleEditMode: '&'
         },
         controller: RoleColumnCtrl,
         controllerAs: 'vm',

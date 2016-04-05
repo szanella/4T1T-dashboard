@@ -2,13 +2,14 @@
   <h3>{{vm.role}}</h3>
   <ul class="list-group">
     <li ng-repeat="hero in vm.heroes" class="list-group-item clearfix"
-    ng-class="{'list-group-item-success': hero.degree === 1, 'list-group-item-warning': hero.degree === 2, 'list-group-item-danger': hero.degree === 3}">
-    {{hero.name}}
+      ng-class="{'list-group-item-success': hero.degree === 1, 'list-group-item-warning': hero.degree === 2, 'list-group-item-danger': hero.degree === 3}">
+      {{hero.name}}
 
-    <span class="pull-right">
-      <button class="btn btn-md btn-danger">
-        <span class="glyphicon glyphicon-trash"></span>
-      </button>
+      <span class="pull-right" ng-show="vm.editMode">
+        <button class="btn btn-sm btn-danger" ng-click="vm.removeHero(hero.name, vm.role)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </span>
     </li>
   </ul>
 </div>

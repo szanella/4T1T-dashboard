@@ -9,6 +9,7 @@
       Members.getSingle($routeParams.member_id)
         .success(function(data) {
           vm.member = data;
+          vm.editMode = false;
 
           vm.member.favouriteHeroes = vm.member.favouriteHeroes || {};
           vm.member.favByRole = {
@@ -19,6 +20,10 @@
             'roaming': vm.member.favouriteHeroes.filter(function(hero) {return hero.position === 'roaming'}),
             'jungle': vm.member.favouriteHeroes.filter(function(hero) {return hero.position === 'jungle'})
           };
+
+          vm.toggleEditMode = function() {
+            vm.editMode = !vm.editMode;
+          }
         });
     };
 })();
