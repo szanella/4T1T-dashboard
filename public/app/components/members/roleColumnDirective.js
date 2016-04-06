@@ -8,10 +8,11 @@
         replace: true,
         templateUrl: 'app/components/members/roleColumn.html',
         scope: {
-          role: '@',
+          role: '=',
           heroes: '=',
           editMode: '=',
-          toggleEditMode: '&'
+          toggleEditMode: '&',
+          deleteHeroFromFavourites: '&'
         },
         controller: RoleColumnCtrl,
         controllerAs: 'vm',
@@ -24,4 +25,6 @@
 
     RoleColumnCtrl.$inject = [];
     function RoleColumnCtrl() {};
+
+    //TODO add the hero removal function
 })();

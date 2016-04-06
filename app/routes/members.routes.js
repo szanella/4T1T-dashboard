@@ -69,6 +69,29 @@ module.exports = function(app) {
     });
   });
 
+  app.delete('/api/members/:member_id/heroes/:role/:hero', function(req, res) {
+    Member.update(
+      {_id : req.params.member_id},
+      {$pull : {favouriteHeroes : {position : req.params.role, name: req.params.hero}}},
+      function(err, todo) {
+        if (err) {
+          res.status(500).send(err);
+        }
+        else {
+          Member.findById(req.params.member_id, {favouriteHeroes: 1},
+            function(err, favHeroes) {
+              if (err) {
+                res.status(500).send(err);
+              }
+              else {
+                res.json(favHeroes.favouriteHeroes);
+              }
+            });
+        }
+      }
+    );
+  });
+
   // application -------------------------------------------------------------
   app.get('*', function(req, res) {
     res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)

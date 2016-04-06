@@ -1,12 +1,12 @@
 <div class="col-md-2 col-xs-12 row-eq-height role-column">
-  <h3>{{vm.role}}</h3>
+  <h3>{{vm.role.label}}</h3>
   <ul class="list-group">
-    <li ng-repeat="hero in vm.heroes" class="list-group-item clearfix"
+    <li ng-repeat="hero in vm.heroes" class="list-group-item clearfix no-gutter"
       ng-class="{'list-group-item-success': hero.degree === 1, 'list-group-item-warning': hero.degree === 2, 'list-group-item-danger': hero.degree === 3}">
-      {{hero.name}}
+      <span class="text-left" ng-class="{'col-md-9' : vm.editMode}">{{hero.name}}</span>
 
-      <span class="pull-right" ng-show="vm.editMode">
-        <button class="btn btn-sm btn-danger" ng-click="vm.removeHero(hero.name, vm.role)">
+      <span class="pull-right col-md-3" ng-show="vm.editMode">
+        <button class="btn btn-sm btn-danger" ng-click="vm.deleteHeroFromFavourites({role: vm.role.id, hero: hero.name})">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </span>

@@ -16,6 +16,9 @@
         },
         delete : function(id) {
           return $http.delete('/api/members/' + id);
+        },
+        deleteHeroFromFavourites : function(member_id, role, hero) {
+          return $http.delete('/api/members/' + member_id + '/heroes/' + role + '/' + hero);
         }
       };
     };
