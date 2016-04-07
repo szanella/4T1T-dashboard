@@ -2,6 +2,7 @@ var Member = require('../models/member');
 
 module.exports = function(app) {
   app.get('/api/members', function(req, res) {
+    console.log("RETRIEVING MEMBERS");
     Member.find(function(err, members) {
       if (err) {
         res.status(500).send(err);

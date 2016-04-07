@@ -2,6 +2,7 @@ var Hero = require('../models/hero');
 
 module.exports = function(app) {
   app.get('/api/heroes', function(req, res) {
+    console.log("RETRIEVING HEROES");
     var query;
     if(req.query.offset !== undefined && req.query.limit !== undefined) {
       console.log(req.query.offset);
@@ -32,6 +33,7 @@ module.exports = function(app) {
   });
 
   app.post('/api/heroes', function(req, res) {
+    console.log("ADDING HERO");
 
     Hero.create({
       name : req.body.name,
