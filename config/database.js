@@ -1,5 +1,5 @@
 // config/database.js
 
     module.exports = {
-        url : process.env.PROD_MONGODB
+        url : process.env.MONGOLAB_URI
     };
