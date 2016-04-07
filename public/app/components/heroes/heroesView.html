@@ -1,7 +1,7 @@
 <header active-option="heroes"></header>
 <h1>Heroes</h1>
 <div class="row">
-  <div class="col-md-8 col-sm-8 col-xs-12">
+  <div class="col-md-8 col-sm-12 col-xs-12">
     <ul class="list-group">
       <a href="/heroes/{{hero._id}}" class="list-group-item" ng-repeat="hero in vm.heroes">
         <span class="badge">{{hero.mainAttr}}</span>
@@ -15,7 +15,7 @@
       </ul>
     </nav>
   </div>
-  <div class="col-md-4 col-sm-4 col-xs-12">
+  <div class="col-md-4 col-sm-12 col-xs-12">
     <div class="form-group">
       <label for="heroName">Hero Name</label>
       <input type="text" id="heroName" class="form-control" ng-model="vm.newHero.name" placeholder="Name">
