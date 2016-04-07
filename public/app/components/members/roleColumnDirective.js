@@ -12,7 +12,9 @@
           heroes: '=',
           editMode: '=',
           toggleEditMode: '&',
-          deleteHeroFromFavourites: '&'
+          addHeroToFavourites: '&',
+          deleteHeroFromFavourites: '&',
+          allHeroes: '='
         },
         controller: RoleColumnCtrl,
         controllerAs: 'vm',
@@ -24,7 +26,21 @@
     };
 
     RoleColumnCtrl.$inject = [];
-    function RoleColumnCtrl() {};
+    function RoleColumnCtrl() {
+      var vm = this;
 
-    //TODO add the hero removal function
+      vm.newHero = {
+        role: vm.role.id
+      };
+
+      vm.eraseNewHero = function() {
+        vm.newHero.hero = null;
+        vm.newHero.degree = null;
+      };
+
+      vm.addHeroAndErase = function() {
+        vm.addHeroToFavourites({heroData: angular.copy(vm.newHero)});
+        vm.eraseNewHero();
+      }
+    };
 })();

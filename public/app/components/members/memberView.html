@@ -11,7 +11,7 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <role-column ng-repeat="role in vm.roles" role="role" heroes="vm.member.favByRole[role.id]" edit-mode="vm.editMode" toggle-edit-mode="vm.toggleEditMode" delete-hero-from-favourites="vm.deleteHeroFromFavourites(role, hero)"></role-column>
+      <role-column ng-repeat="role in vm.roles" role="role" heroes="vm.member.favByRole[role.id]" edit-mode="vm.editMode" toggle-edit-mode="vm.toggleEditMode" add-hero-to-favourites = "vm.addHeroToFavourites(heroData)" delete-hero-from-favourites="vm.deleteHeroFromFavourites(role, hero)" all-heroes="vm.allHeroes"></role-column>
     </div>
   </div>
 </div>

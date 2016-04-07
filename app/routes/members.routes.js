@@ -46,7 +46,29 @@ module.exports = function(app) {
         });
       }
     });
+  });
 
+  app.post('/api/members/:member_id/heroes', function(req, res) {
+    Member.findByIdAndUpdate(
+      req.params.member_id,
+      {$push : {favouriteHeroes : {position : req.body.role, name: req.body.hero, degree : req.body.degree}}},
+      function(err, todo) {
+        if (err) {
+          res.status(500).send(err);
+        }
+        else {
+          Member.findById(req.params.member_id, {favouriteHeroes: 1},
+            function(err, favHeroes) {
+              if (err) {
+                res.status(500).send(err);
+              }
+              else {
+                res.json(favHeroes.favouriteHeroes);
+              }
+            });
+        }
+      }
+    );
   });
 
   app.delete('/api/members/:member_id', function(req, res) {

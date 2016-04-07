@@ -14,6 +14,9 @@
         create : function(memberData) {
           return $http.post('/api/members', memberData);
         },
+        addHeroToFavourites : function(member_id, heroData) {
+          return $http.post('/api/members/' + member_id + '/heroes/', heroData);
+        },
         delete : function(id) {
           return $http.delete('/api/members/' + id);
         },

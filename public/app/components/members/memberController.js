@@ -2,8 +2,8 @@
   angular.module('4T1T')
     .controller('MemberCtrl', memberCtrl);
 
-  memberCtrl.$inject = ['$scope', 'Members', '$routeParams'];
-  function memberCtrl($scope, Members, $routeParams) {
+  memberCtrl.$inject = ['$scope', 'Members', 'Heroes', '$routeParams'];
+  function memberCtrl($scope, Members, Heroes, $routeParams) {
     var vm = this;
     vm.editMode = false;
     vm.roles = [
@@ -41,6 +41,12 @@
         updateFavHeroes(vm.member.favouriteHeroes);
       });
 
+    //retrieve all the heroes
+    Heroes.get()
+      .success(function(data) {
+        vm.allHeroes = data;
+      });
+
     function degreeCompare(a, b) {
       return a.degree - b.degree;
     }
@@ -57,6 +63,15 @@
 
     vm.toggleEditMode = function() {
       vm.editMode = !vm.editMode;
+    };
+
+    vm.addHeroToFavourites = function(heroData) {
+      if(heroData.hero && heroData.degree) {
+        Members.addHeroToFavourites(vm.member._id, heroData)
+        .success(function(data) {
+          updateFavHeroes(data);
+        });
+      }
     };
 
     vm.deleteHeroFromFavourites = function(role, hero) {

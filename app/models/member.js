@@ -1,19 +1,22 @@
 // load mongoose since we need it to define a model
-    var mongoose = require('mongoose'),
-       Schema = mongoose.Schema;
+  var mongoose = require('mongoose'),
+  Schema = mongoose.Schema;
 
-    var memberSchema = new Schema({
-        name : {
-          type : String,
-          required : true
-        },
-        favouriteHeroes : [{
-          position: String,
-          name: String,
-          degree: Number
-        }]
+
+
+  var favHeroSchema = new Schema({
+      position: String,
+      name: String,
+      degree: Number
+  }, {_id: false});
+  memberSchema = new Schema({
+    name : {
+      type : String,
+      required : true
+    },
+    favouriteHeroes : [favHeroSchema]
     }, {
       collection : 'members'
-    });
+  });
 
-    module.exports = mongoose.model('Member', memberSchema);
+  module.exports = mongoose.model('Member', memberSchema);
