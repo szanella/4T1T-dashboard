@@ -21,7 +21,7 @@ module.exports = function(apiRoutes, app) {
             res.json({ success: false, message: 'Authentication failed. Wrong password.' });
           } else {
             var token = jwt.sign(member, app.get('secret'), {
-              expiresInMinutes: 1440 // expires in 24 hours
+              expiresIn: 86400 // expires in 24 hours
             });
 
             // return the information including token as JSON
