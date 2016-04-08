@@ -74,7 +74,7 @@ module.exports = function(apiRoutes) {
 
   apiRoutes.post('/members/:member_id/password', function(req, res) {
     pwdService(req.body.password).hash(function(error, hash) {
-      console.log('req.body.password');
+      console.log(req.body.password);
     	if(error)
     		throw new Error('Something went wrong!');
 
