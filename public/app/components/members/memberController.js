@@ -48,8 +48,6 @@
         vm.allHeroes = data;
       });
 
-      auth.logout();
-
     function degreeCompare(a, b) {
       return a.degree - b.degree;
     }
