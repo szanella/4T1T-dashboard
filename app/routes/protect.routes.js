@@ -7,7 +7,7 @@ module.exports = function(apiRoutes, app) {
     if (token) {
       jwt.verify(token, app.get('secret'), function(err, decoded) {
         if (err) {
-          return res.json({ success: false, message: 'Failed to authenticate token.' });
+          return res.json({ success: false, message: 'Failed to authenticate token. ' + err});
         } else {
           req.decoded = decoded;
           next();
