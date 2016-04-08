@@ -10,7 +10,7 @@ module.exports = function(app) {
     else {
       query = Hero.find();
     }
-    query.exec(function(err, heroes) {
+    query.sort({'name': 1}).exec(function(err, heroes) {
       if (err) {
         res.status(500).send(err);
       }
