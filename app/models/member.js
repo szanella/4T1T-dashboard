@@ -2,8 +2,6 @@
   var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-
-
   var favHeroSchema = new Schema({
       position: String,
       name: String,

@@ -14,14 +14,18 @@
 
       vm.newMember = {};
       vm.createMember = function() {
-        console.log("called");
-        if (!$.isEmptyObject(vm.newMember)) {
-          Members.create(vm.newMember)
-            .success(function(data) {
-              vm.newMember = {}; // clear the form so our user is ready to enter another
-              vm.members = data; // assign our new list of todos
-            });
+        if(true) {
+          toastr.warning('I see you trying to mess up the database, do something useful!', 'Hey you');
         }
+        else {
+          if (!$.isEmptyObject(vm.newMember)) {
+            Members.create(vm.newMember)
+              .success(function(data) {
+                vm.newMember = {}; // clear the form so our user is ready to enter another
+                vm.members = data; // assign our new list of todos
+              });
+          }
+        }        
       };
     };
 })();

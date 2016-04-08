@@ -54,7 +54,7 @@
       vm.newHero = {};
       vm.createHero = function() {
         if(true) {
-          toastr.warning('Hey you', 'I see you trying to mess the database up, go to do something useful!');
+          toastr.warning('I see you trying to mess up the database, do something useful!', 'Hey you');
         }
         else {
           if (!$.isEmptyObject(vm.newHero)) {
