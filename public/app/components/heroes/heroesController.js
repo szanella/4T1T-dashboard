@@ -53,13 +53,18 @@
       //Stuff to create new hero
       vm.newHero = {};
       vm.createHero = function() {
-        if (!$.isEmptyObject(vm.newHero)) {
-          Heroes.create(vm.newHero)
-            .success(function(data) {
-              vm.newHero = {};
-              vm.heroes = data;
-              toastr.success('Hero added');
-            });
+        if(true) {
+          toastr.warning('Hey you', 'I see you trying to mess the database up, go to do something useful!');
+        }
+        else {
+          if (!$.isEmptyObject(vm.newHero)) {
+            Heroes.create(vm.newHero)
+              .success(function(data) {
+                vm.newHero = {};
+                vm.heroes = data;
+                toastr.success('Hero added');
+              });
+          }
         }
       };
 
