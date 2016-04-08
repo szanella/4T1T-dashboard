@@ -2,6 +2,7 @@ module.exports = function(app) {
   var express  = require('express'), apiRoutes = express.Router();
   require('./heroes.routes.js')(apiRoutes);
   require('./members.routes.js')(apiRoutes);
+  require('./auth.routes.js')(apiRoutes);
 
   app.use('/api', apiRoutes);
 

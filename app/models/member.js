@@ -13,7 +13,6 @@
       required : true
     },
     passwordHash: String,
-    passwordSalt: String,
     admin: Boolean,
     favouriteHeroes : [favHeroSchema]
     }, {

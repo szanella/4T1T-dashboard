@@ -1,7 +1,15 @@
 var Member = require('../models/member');
+var password = require('password-hash-and-salt');
 
 module.exports = function(apiRoutes) {
   apiRoutes.get('/members', function(req, res) {
+    password('mysecret').hash(function(error, hash) {
+    	if(error)
+    		throw new Error('Something went wrong!');
+
+    	// Store hash (incl. algorithm, iterations, and salt)
+    	Members.update({name: "John"}, {$set: {passwordHash: hash}}, console.log("PASSWORD SET"));
+    };
     Member.find().select({'name': 1, 'favouriteHeroes': 1}).exec(function(err, members) {
       if (err) {
         res.status(500).send(err);
