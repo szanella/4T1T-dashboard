@@ -83,13 +83,20 @@
     };
 
     vm.setPassword = function(password) {
-      Members.setPassword(vm.member._id, vm.newPasswordData)
-      .success(function(data) {
-        toastr.success('Password successfully updated', 'Success');
-      })
-      .error(function(data) {
-        toastr.error('Error updating the password', 'Error');
-      });
+      if(true) {
+        toastr.warning('What would passwords be for if you could just change them like this?', 'Nope');
+      }
+      else {
+        Members.setPassword(vm.member._id, vm.newPasswordData)
+        .success(function(data) {
+          toastr.success('Password successfully updated', 'Success');
+          vm.newPasswordData = {};
+        })
+        .error(function(data) {
+          toastr.error('Error updating the password', 'Error');
+          vm.newPasswordData = {};
+        });
+      }
     };
   };
 })();

@@ -14,8 +14,6 @@ module.exports = function(apiRoutes, app) {
       if (!member) {
         res.json({ success: false, message: 'Authentication failed. User not found.' });
       } else if (member) {
-
-        console.log(member.passwordHash);
         pwdService(req.body.password).verifyAgainst(member.passwordHash, function(error, verified) {
           if(error)
           res.json({ success: false, message: 'Something went wrong' });
@@ -29,7 +27,7 @@ module.exports = function(apiRoutes, app) {
             // return the information including token as JSON
             res.json({
               success: true,
-              message: 'Enjoy your token!',
+              message: 'Authentication successful!',
               token: token
             });
           }
