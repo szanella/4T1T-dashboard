@@ -16,7 +16,7 @@
       .success(function(data) {
         toastr.success("ayyy");
       })
-      .error(funtion(err) {
+      .error(function(err) {
         toastr.error(err);
       });
       vm.newMember = {};
