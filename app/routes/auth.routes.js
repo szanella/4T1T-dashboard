@@ -2,7 +2,7 @@ var Member = require('../models/member');
 var pwdService = require('password-hash-and-salt');
 var jwt    = require('jsonwebtoken');
 
-module.exports = function(apiRoutes) {
+module.exports = function(apiRoutes, app) {
   apiRoutes.post('/authenticate', function(req, res) {
     console.log(req.body.name, req.body.password);
     Member.findOne({
