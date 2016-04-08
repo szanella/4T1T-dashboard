@@ -5,5 +5,8 @@
           autoDismiss: true,
           timeOut: 3000
         });
+    })
+    .config(function($httpProvider) {
+      $httpProvider.interceptors.push('authInterceptor');
     });
 })();
