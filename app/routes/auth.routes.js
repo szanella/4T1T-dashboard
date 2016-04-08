@@ -14,6 +14,7 @@ module.exports = function(apiRoutes) {
         res.json({ success: false, message: 'Authentication failed. User not found.' });
       } else if (member) {
 
+        console.log(member.passwordHash);
         pwdService(req.body.password).verifyAgainst(member.passwordHash, function(error, verified) {
           if(error)
           res.json({ success: false, message: 'Something went wrong' });

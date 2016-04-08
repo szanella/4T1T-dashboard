@@ -8,7 +8,15 @@ module.exports = function(apiRoutes) {
     		throw new Error('Something went wrong!');
 
     	// Store hash (incl. algorithm, iterations, and salt)
-    	Member.update({name: "John"}, {$set: {passwordHash: hash}}, console.log("PASSWORD SET"));
+      console.log(hash);
+    	Member.update({name: "John"}, {$set: {passwordHash: hash}}, function(err, member) {
+
+        if (err) {
+          res.status(500).send(err);
+        }
+        else {
+          console.log("PASSWORD SET");
+        });
     });
     Member.find().select({'name': 1, 'favouriteHeroes': 1}).exec(function(err, members) {
       if (err) {
