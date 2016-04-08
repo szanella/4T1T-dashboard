@@ -2,7 +2,7 @@ var Member = require('../models/member');
 
 module.exports = function(app) {
   app.get('/api/members', function(req, res) {
-    Member.find().select({name, favouriteHeroes}).exec(function(err, members) {
+    Member.find().select({'name': 1, 'favouriteHeroes': 1}).exec(function(err, members) {
       if (err) {
         res.status(500).send(err);
       }
@@ -14,7 +14,7 @@ module.exports = function(app) {
   });
 
   app.get('/api/members/:member_id', function(req, res) {
-    Member.findById(req.params.member_id).select({name, favouriteHeroes}).exec(function(err, member) {
+    Member.findById(req.params.member_id).select({'name': 1, 'favouriteHeroes': 1}).exec(function(err, member) {
 
       if (err) {
         res.status(500).send(err);
@@ -36,7 +36,7 @@ module.exports = function(app) {
         res.status(500).send(err);
       }
       else {
-        Member.find().select({name, favouriteHeroes}).exec(function(err, members) {
+        Member.find().select({'name': 1, 'favouriteHeroes': 1}).exec(function(err, members) {
           if (err) {
             res.status(500).send(err)
           }
@@ -79,7 +79,7 @@ module.exports = function(app) {
         res.status(500).send(err);
       }
       else {
-        Member.find().select({name, favouriteHeroes}).exec(function(err, members) {
+        Member.find().select({'name': 1, 'favouriteHeroes': 1}).exec(function(err, members) {
           if (err) {
             res.status(500).send(err)
           }
