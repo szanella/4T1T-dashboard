@@ -2,7 +2,8 @@
   angular.module('4T1T')
     .service('user', userService);
 
-  function userService() {
+  userService.$inject = ['$http'];
+  function userService($http) {
     var self = this;
 
     self.login = function(name, password) {
