@@ -3,7 +3,7 @@ var pwdService = require('password-hash-and-salt');
 
 module.exports = function(apiRoutes) {
   apiRoutes.post('/authenticate', function(req, res) {
-
+    console.log(req.body.name, req.body.password);
     Member.findOne({
       name: req.body.name
     }, function(err, member) {
