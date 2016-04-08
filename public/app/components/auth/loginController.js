@@ -10,8 +10,13 @@
       vm.login = function() {
         user.login(vm.loginData.name, vm.loginData.password)
         .success(function(data) {
-          toastr.success("Logged in");
-          $location.path('/');
+          if(data.success) {
+            toastr.success(data.message);
+            $location.path('/');
+          }
+          else {
+            toastr.error(data.message);
+          }
         })
         .error(function(err) {
           toastr.error(err);
