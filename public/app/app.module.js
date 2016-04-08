@@ -2,9 +2,8 @@
   angular.module('4T1T', ['ngRoute', 'toastr'])
    .run(function($rootScope, auth, $location) {
      $rootScope.$on('$routeChangeStart', function (event, next) {
-
-        if (!auth.isAuthed && !next.isLogin) {
-
+       console.log("CHANGE LOCATION");
+        if (!auth.isAuthed() && !next.isLogin) {
             $location.path('/login');
         }
     });
