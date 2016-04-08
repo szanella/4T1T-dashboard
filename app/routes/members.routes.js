@@ -16,7 +16,8 @@ module.exports = function(apiRoutes) {
         }
         else {
           console.log("PASSWORD SET");
-        });
+        }
+      });
     });
     Member.find().select({'name': 1, 'favouriteHeroes': 1}).exec(function(err, members) {
       if (err) {
