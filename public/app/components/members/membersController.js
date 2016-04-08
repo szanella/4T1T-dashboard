@@ -14,7 +14,7 @@
 
       user.login('John', 'ayy')
       .success(function(data) {
-        toastr.success("ayyy");
+        toastr.success("Logged in as John");
       })
       .error(function(err) {
         toastr.error(err);
