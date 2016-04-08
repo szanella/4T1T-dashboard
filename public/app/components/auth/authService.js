@@ -2,7 +2,8 @@
   angular.module('4T1T')
     .service('auth', authService);
 
-  function authService() {
+    authService.$inject = ['$window']
+  function authService($window) {
     var self = this;
 
     self.parseJwt = function(token) {
