@@ -1,7 +1,7 @@
 var Member = require('../models/member');
 
 module.exports = function(apiRoutes) {
-  apiRoutes.get('/api/members', function(req, res) {
+  apiRoutes.get('/members', function(req, res) {
     Member.find().select({'name': 1, 'favouriteHeroes': 1}).exec(function(err, members) {
       if (err) {
         res.status(500).send(err);
@@ -13,7 +13,7 @@ module.exports = function(apiRoutes) {
     });
   });
 
-  apiRoutes.get('/api/members/:member_id', function(req, res) {
+  apiRoutes.get('/members/:member_id', function(req, res) {
     Member.findById(req.params.member_id).select({'name': 1, 'favouriteHeroes': 1}).exec(function(err, member) {
 
       if (err) {
@@ -26,7 +26,7 @@ module.exports = function(apiRoutes) {
     });
   });
 
-  apiRoutes.post('/api/members', function(req, res) {
+  apiRoutes.post('/members', function(req, res) {
 
     Member.create({
       name : req.body.name,
@@ -48,7 +48,7 @@ module.exports = function(apiRoutes) {
     });
   });
 
-  apiRoutes.post('/api/members/:member_id/heroes', function(req, res) {
+  apiRoutes.post('/members/:member_id/heroes', function(req, res) {
     Member.findByIdAndUpdate(
       req.params.member_id,
       {$push : {favouriteHeroes : {position : req.body.role, name: req.body.hero, degree : req.body.degree}}},
@@ -71,7 +71,7 @@ module.exports = function(apiRoutes) {
     );
   });
 
-  apiRoutes.delete('/api/members/:member_id', function(req, res) {
+  apiRoutes.delete('/members/:member_id', function(req, res) {
     Member.remove({
       _id : req.params.member_id
     }, function(err, todo) {
@@ -91,7 +91,7 @@ module.exports = function(apiRoutes) {
     });
   });
 
-  apiRoutes.delete('/api/members/:member_id/heroes/:role/:hero', function(req, res) {
+  apiRoutes.delete('/members/:member_id/heroes/:role/:hero', function(req, res) {
     Member.update(
       {_id : req.params.member_id},
       {$pull : {favouriteHeroes : {position : req.params.role, name: req.params.hero}}},
