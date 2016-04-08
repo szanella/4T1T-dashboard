@@ -2,8 +2,8 @@
   angular.module('4T1T')
     .controller('MembersCtrl', membersCtrl);
 
-    membersCtrl.$inject = ['$scope', 'Members'];
-    function membersCtrl($scope, Members) {
+    membersCtrl.$inject = ['$scope', 'Members'm 'toastr'];
+    function membersCtrl($scope, Members, toastr) {
       var vm = this;
 
       //retrieve the members
@@ -25,7 +25,7 @@
                 vm.members = data; // assign our new list of todos
               });
           }
-        }        
+        }
       };
     };
 })();
