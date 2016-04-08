@@ -1,7 +1,7 @@
 var Hero = require('../models/hero');
 
-module.exports = function(app) {
-  app.get('/api/heroes', function(req, res) {
+module.exports = function(apiRoutes) {
+  apiRoutes.get('/api/heroes', function(req, res) {
     var query;
     if(req.query.offset !== undefined && req.query.limit !== undefined) {
       console.log(req.query.offset);
@@ -20,7 +20,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/api/heroes/:hero_id', function(req, res) {
+  apiRoutes.get('/api/heroes/:hero_id', function(req, res) {
     Hero.findById(req.params.hero_id, function(err, hero) {
       if (err) {
         res.status(500).send(err);
@@ -31,7 +31,7 @@ module.exports = function(app) {
     });
   });
 
-  app.post('/api/heroes', function(req, res) {
+  apiRoutes.post('/api/heroes', function(req, res) {
     console.log("ADDING HERO");
 
     Hero.create({
@@ -56,7 +56,7 @@ module.exports = function(app) {
 
   });
 
-  app.delete('/api/heroes/:hero_id', function(req, res) {
+  apiRoutes.delete('/api/heroes/:hero_id', function(req, res) {
     Hero.remove({
       _id : req.params.hero_id
     }, function(err, todo) {
