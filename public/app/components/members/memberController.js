@@ -2,8 +2,8 @@
   angular.module('4T1T')
     .controller('MemberCtrl', memberCtrl);
 
-  memberCtrl.$inject = ['$scope', 'Members', 'Heroes', '$routeParams', 'toastr'];
-  function memberCtrl($scope, Members, Heroes, $routeParams, toastr) {
+  memberCtrl.$inject = ['$scope', 'Members', 'Heroes', '$routeParams', 'toastr', 'auth'];
+  function memberCtrl($scope, Members, Heroes, $routeParams, toastr, auth) {
     var vm = this;
     vm.editMode = false;
     vm.roles = [
@@ -47,6 +47,8 @@
       .success(function(data) {
         vm.allHeroes = data;
       });
+
+      auth.logout();
 
     function degreeCompare(a, b) {
       return a.degree - b.degree;

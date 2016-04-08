@@ -9,6 +9,12 @@
             controller: 'HomeCtrl',
             controllerAs: 'vm'
           }).
+          when('/login', {
+            templateUrl: '/app/components/members/homeView.html',
+            controller: 'HomeCtrl',
+            controllerAs: 'vm',
+            isLogin: true
+          }).
           when('/members', {
             templateUrl: '/app/components/members/membersView.html',
             controller: 'MembersCtrl',
