@@ -2,8 +2,8 @@
   angular.module('4T1T')
     .controller('MemberCtrl', memberCtrl);
 
-  memberCtrl.$inject = ['$scope', 'Members', 'Heroes', '$routeParams'];
-  function memberCtrl($scope, Members, Heroes, $routeParams) {
+  memberCtrl.$inject = ['$scope', 'Members', 'Heroes', '$routeParams', 'toastr'];
+  function memberCtrl($scope, Members, Heroes, $routeParams, toastr) {
     var vm = this;
     vm.editMode = false;
     vm.roles = [
@@ -32,6 +32,7 @@
         id: 'jungle'
       }
     ];
+    vm.newPasswordData = {};
 
     //retrieve the members
     Members.getSingle($routeParams.member_id)
@@ -79,6 +80,16 @@
       .success(function(data) {
         updateFavHeroes(data);
       });
-    }
+    };
+
+    vm.setPassword = function(password) {
+      Members.setPassword(vm.member._id, vm.newPasswordData)
+      .success(function(data) {
+        toastr.success('Password successfully updated', 'Success');
+      });
+      .error(function(data) {
+        toastr.error('Error updating the password', 'Error');
+      });
+    };
   };
 })();

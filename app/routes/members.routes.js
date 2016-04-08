@@ -1,24 +1,8 @@
 var Member = require('../models/member');
-var password = require('password-hash-and-salt');
+var pwdService = require('password-hash-and-salt');
 
 module.exports = function(apiRoutes) {
   apiRoutes.get('/members', function(req, res) {
-    password('mysecret').hash(function(error, hash) {
-    	if(error)
-    		throw new Error('Something went wrong!');
-
-    	// Store hash (incl. algorithm, iterations, and salt)
-      console.log(hash);
-    	Member.update({name: "John"}, {$set: {passwordHash: hash}}, function(err, member) {
-
-        if (err) {
-          res.status(500).send(err);
-        }
-        else {
-          console.log("PASSWORD SET");
-        }
-      });
-    });
     Member.find().select({'name': 1, 'favouriteHeroes': 1}).exec(function(err, members) {
       if (err) {
         res.status(500).send(err);
@@ -86,6 +70,26 @@ module.exports = function(apiRoutes) {
         }
       }
     );
+  });
+
+  apiRoutes.post('members/:member_id/password', function(req, res) {
+    pwdService(req.body.password).hash(function(error, hash) {
+    	if(error)
+    		throw new Error('Something went wrong!');
+
+      Member.findByIdAndUpdate(
+        req.params.member_id,
+        {$set: {passwordHash: hash}},
+        function(err, todo) {
+          if (err) {
+            res.status(500).send(err);
+          }
+          else {
+            res.status(200).send("done");
+          }
+        }
+      );
+    });
   });
 
   apiRoutes.delete('/members/:member_id', function(req, res) {

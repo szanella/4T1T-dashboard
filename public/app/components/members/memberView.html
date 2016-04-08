@@ -1,5 +1,9 @@
 <header active-option="members"></header>
 <h1>{{vm.member.name}}</h1>
+<div ng-show="vm.editMode">
+  <label for="newPassword">New Password</label>
+  <input type="text" id="newPassword" class="form-control" ng-model="vm.passwordData.password" placeholder="New password" />
+</div>
 <div class="panel panel-default">
   <div class="panel-heading clearfix">
     <h2 class="panel-title pull-left">Favourite Heroes</h2>
