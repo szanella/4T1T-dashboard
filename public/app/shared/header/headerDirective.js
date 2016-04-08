@@ -19,8 +19,8 @@
       function link(scope, element, attrs) {};
     };
 
-    HeaderCtrl.$inject = ['$scope'];
-    function HeaderCtrl($scope) {
+    HeaderCtrl.$inject = ['$scope', 'auth', '$location', 'toastr'];
+    function HeaderCtrl($scope, auth, $location, toastr) {
       var vm = this, i;
 
       vm.options = [
@@ -37,6 +37,14 @@
           active: false
         }
       ];
+
+      vm.isAuthed = auth.isAuthed();
+
+      vm.logout = function() {
+        auth.logout();
+        toastr.success("Logged out");
+        $location.path('/login');
+      }
 
       //set the active option
       if(vm.activeOption) {
