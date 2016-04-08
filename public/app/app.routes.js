@@ -7,12 +7,11 @@
           when('/', {
             templateUrl: '/app/components/home/homeView.html',
             controller: 'HomeCtrl',
-            controllerAs: 'vm',
-            isLogin: true
+            controllerAs: 'vm'
           }).
           when('/login', {
-            templateUrl: '/app/components/members/homeView.html',
-            controller: 'HomeCtrl',
+            templateUrl: '/app/components/auth/loginView.html',
+            controller: 'LoginCtrl',
             controllerAs: 'vm',
             isLogin: true
           }).

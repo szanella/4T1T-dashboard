@@ -2,8 +2,8 @@
   angular.module('4T1T')
     .controller('MembersCtrl', membersCtrl);
 
-    membersCtrl.$inject = ['$scope', 'Members', 'toastr', 'user'];
-    function membersCtrl($scope, Members, toastr, user) {
+    membersCtrl.$inject = ['$scope', 'Members', 'toastr'];
+    function membersCtrl($scope, Members, toastr) {
       var vm = this;
 
       //retrieve the members
@@ -12,13 +12,6 @@
           vm.members = data;
         });
 
-      user.login('John', 'ayy')
-      .success(function(data) {
-        toastr.success("Logged in as John");
-      })
-      .error(function(err) {
-        toastr.error(err);
-      });
       vm.newMember = {};
       vm.createMember = function() {
         if(true) {

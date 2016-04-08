@@ -4,8 +4,7 @@
      $rootScope.$on('$routeChangeStart', function (event, next) {
        console.log("CHANGE LOCATION");
         if (!auth.isAuthed() && !next.isLogin) {
-            //$location.path('/login');
-            console.log(next);
+            $location.path('/login');
         }
     });
    });
