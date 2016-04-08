@@ -2,8 +2,8 @@
   angular.module('4T1T')
     .controller('LoginCtrl', loginCtrl);
 
-    loginCtrl.$inject = ['user', 'toastr'];
-    function loginCtrl(user, toastr) {
+    loginCtrl.$inject = ['user', 'toastr', '$location'];
+    function loginCtrl(user, toastr, $location) {
       var vm = this;
       vm.loginData = {}
 
