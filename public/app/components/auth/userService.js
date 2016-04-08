@@ -7,7 +7,7 @@
     var self = this;
 
     self.login = function(name, password) {
-      return $http.post('/api/authentication', {
+      return $http.post('/api/authenticate', {
         name: name,
         password: password
       });
