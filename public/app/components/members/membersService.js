@@ -19,7 +19,7 @@
         },
         setPassword : function(member_id, passwordData) {
           return $http.post('/api/members/' + member_id + '/password/', passwordData);
-        }
+        },
         delete : function(id) {
           return $http.delete('/api/members/' + id);
         },

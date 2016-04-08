@@ -86,7 +86,7 @@
       Members.setPassword(vm.member._id, vm.newPasswordData)
       .success(function(data) {
         toastr.success('Password successfully updated', 'Success');
-      });
+      })
       .error(function(data) {
         toastr.error('Error updating the password', 'Error');
       });
