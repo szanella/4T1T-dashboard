@@ -31,7 +31,7 @@
             controllerAs: 'vm'
           }).
           when('/heroes/:hero_id', {
-            templateUrl: '/app/components/heroes/heroesView.html',
+            templateUrl: '/app/components/heroes/heroView.html',
             controller: 'HeroCtrl',
             controllerAs: 'vm'
           });

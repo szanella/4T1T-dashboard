@@ -1,0 +1,7 @@
+img.profile-pic {
+  max-height: 200px;
+  max-width: 200px;
+  height: auto;
+  width: auto;
+  margin: 15px;
+}

@@ -14,7 +14,10 @@
     },
     passwordHash: String,
     admin: Boolean,
-    favouriteHeroes : [favHeroSchema]
+    favouriteHeroes : [favHeroSchema],
+    profilePicUrl: String,
+    realName: String,
+    country: String
     }, {
       collection : 'members'
   });

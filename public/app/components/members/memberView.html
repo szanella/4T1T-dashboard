@@ -9,6 +9,25 @@
 </form>
 <div class="panel panel-default">
   <div class="panel-heading clearfix">
+    <h2 class="panel-title pull-left">General Info</h2>
+    <span class="pull-right">
+      <button class="btn btn-sm" ng-click="vm.toggleEditMode()" ng-class="{'btn-primary' : vm.editMode, 'btn-info' : !vm.editMode}">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </button>
+    </span>
+  </div>
+  <div class="panel-body">
+    <div class="pull-left">
+        <img class="img-thumbnail profile-pic" src="assets/img/profilePics/{{vm.member.profilePicUrl}}" alt="...">
+    </div>
+    <div class="pull-left">
+      <h4>{{vm.member.realName}}</h4>
+      <p>{{vm.member.country}}</p>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading clearfix">
     <h2 class="panel-title pull-left">Favourite Heroes</h2>
     <span class="pull-right">
       <button class="btn btn-sm" ng-click="vm.toggleEditMode()" ng-class="{'btn-primary' : vm.editMode, 'btn-info' : !vm.editMode}">

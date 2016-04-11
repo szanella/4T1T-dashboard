@@ -15,7 +15,7 @@ module.exports = function(apiRoutes) {
   });
 
   apiRoutes.get('/members/:member_id', function(req, res) {
-    Member.findById(req.params.member_id).select({'name': 1, 'favouriteHeroes': 1}).exec(function(err, member) {
+    Member.findById(req.params.member_id).select({'passwordHash' : 0, 'admin' : 0}).exec(function(err, member) {
 
       if (err) {
         res.status(500).send(err);

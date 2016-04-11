@@ -2,12 +2,13 @@
   angular.module('4T1T')
     .controller('HeroCtrl', heroCtrl);
 
-    heroCtrl.$inject = ['$scope', 'Members', '$routeParams'];
+    heroCtrl.$inject = ['$scope', 'Heroes', '$routeParams'];
     function heroCtrl($scope, Heroes, $routeParams) {
       var vm = this;
       //retrieve the members
-      Hero.getSingle($routeParams.hero_id)
+      Heroes.getSingle($routeParams.hero_id)
         .success(function(data) {
+          console.log("Loaded hero");
           vm.hero = data;
         });
     };
