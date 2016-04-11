@@ -2,7 +2,11 @@
     var mongoose = require('mongoose'),
        Schema = mongoose.Schema;
 
-    var heroSchema = new Schema({
+    var interactionSchema = new Schema({
+          hero : String,
+          notes : String
+        }),
+        heroSchema = new Schema({
         name : {
           type : String,
           required : true
@@ -11,6 +15,8 @@
           type : String,
           enum : ['STR', 'AGI', 'INT']
         },
+        goodWith : [interactionSchema],
+        goodAgainst : [interactionSchema],
         imgPrefix : String
     }, {
       collection : 'heroes'

@@ -1,4 +1,5 @@
 var Hero = require('../models/hero');
+var Member = require('../models/member');
 
 module.exports = function(apiRoutes) {
   apiRoutes.get('/heroes', function(req, res) {
@@ -29,6 +30,35 @@ module.exports = function(apiRoutes) {
         res.json(hero);
       }
     });
+  });
+
+  apiRoutes.get('/heroes/:hero_id/players', function(req, res) {
+    Hero.findById(req.params.hero_id).select({name: 1}).exec(function(err, hero) {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        Member.aggregate(
+          [
+            {$project : {favouriteHeroes: 1, name: 1}},
+            {$unwind:"$favouriteHeroes"},
+            {$match: {"favouriteHeroes.name": hero.name}},
+            {$sort: {"favouriteHeroes.degree": 1}},
+            {$group: {
+              _id: "$favouriteHeroes.name",
+              "players": {$push: {name: "$name", position: "$favouriteHeroes.position", degree: "$favouriteHeroes.degree"}}
+            }}
+          ], function(err, players) {
+          if (err) {
+            res.status(500).send(err);
+          }
+          else {
+            res.json(players[0]);
+          }
+        });
+      }
+    });
+
   });
 
   apiRoutes.post('/heroes', function(req, res) {

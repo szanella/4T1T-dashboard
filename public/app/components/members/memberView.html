@@ -8,13 +8,8 @@
   <button class="btn btn-default" ng-click="vm.setPassword()">Set Password</button>
 </form>
 <div class="panel panel-default">
-  <div class="panel-heading clearfix">
-    <h2 class="panel-title pull-left">General Info</h2>
-    <span class="pull-right">
-      <button class="btn btn-sm" ng-click="vm.toggleEditMode()" ng-class="{'btn-primary' : vm.editMode, 'btn-info' : !vm.editMode}">
-        <span class="glyphicon glyphicon-pencil"></span>
-      </button>
-    </span>
+  <div class="panel-heading">
+    <h2 class="panel-title">General Info</h2>
   </div>
   <div class="panel-body">
     <div class="pull-left">
@@ -37,7 +32,7 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <role-column ng-repeat="role in vm.roles" role="role" heroes="vm.member.favByRole[role.id]" edit-mode="vm.editMode" toggle-edit-mode="vm.toggleEditMode" add-hero-to-favourites = "vm.addHeroToFavourites(heroData)" delete-hero-from-favourites="vm.deleteHeroFromFavourites(role, hero)" all-heroes="vm.allHeroes"></role-column>
+      <role-column ng-repeat="role in vm.roles" role="role" heroes="vm.member.favByRole[role.id]" edit-mode="vm.editMode" toggle-edit-mode="vm.toggleEditMode" add-hero-to-favourites = "vm.addHeroToFavourites(heroData)" delete-hero-from-favourites="vm.deleteHeroFromFavourites(role, hero)" new-hero-info="vm.newHeroInfo"></role-column>
     </div>
   </div>
 </div>

@@ -14,6 +14,9 @@
         getSingle : function(id) {
           return $http.get('/api/heroes/' + id);
         },
+        getPlayers : function(id) {
+          return $http.get('/api/heroes/' + id + '/players');
+        },
         create : function(heroData) {
           return $http.post('/api/heroes', heroData);
         },

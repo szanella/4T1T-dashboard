@@ -8,8 +8,11 @@
       //retrieve the members
       Heroes.getSingle($routeParams.hero_id)
         .success(function(data) {
-          console.log("Loaded hero");
           vm.hero = data;
+          Heroes.getPlayers($routeParams.hero_id)
+            .success(function(data) {
+              vm.hero.players = data.players;
+            });
         });
     };
 })();

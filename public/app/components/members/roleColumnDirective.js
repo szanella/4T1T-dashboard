@@ -14,7 +14,7 @@
           toggleEditMode: '&',
           addHeroToFavourites: '&',
           deleteHeroFromFavourites: '&',
-          allHeroes: '='
+          newHeroInfo: '='
         },
         controller: RoleColumnCtrl,
         controllerAs: 'vm',

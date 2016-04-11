@@ -2,37 +2,13 @@
   angular.module('4T1T')
     .controller('MemberCtrl', memberCtrl);
 
-  memberCtrl.$inject = ['$scope', 'Members', 'Heroes', '$routeParams', 'toastr', 'auth'];
-  function memberCtrl($scope, Members, Heroes, $routeParams, toastr, auth) {
+  memberCtrl.$inject = ['$scope', 'Members', 'Heroes', 'Roles', 'Degrees', '$routeParams', 'toastr', 'auth'];
+  function memberCtrl($scope, Members, Heroes, Roles, Degrees, $routeParams, toastr, auth) {
     var vm = this;
     vm.editMode = false;
-    vm.roles = [
-      {
-        label: 'Safelane',
-        id: 'safelane'
-      },
-      {
-        label: 'Mid',
-        id: 'mid'
-      },
-      {
-        label: 'Support',
-        id: 'support'
-      },
-      {
-        label: 'Offlane',
-        id: 'offlane'
-      },
-      {
-        label: 'Roaming',
-        id: 'roaming'
-      },
-      {
-        label: 'Jungle',
-        id: 'jungle'
-      }
-    ];
+    vm.roles = Roles.get();
     vm.newPasswordData = {};
+    vm.newHeroInfo = {}
 
     //retrieve the members
     Members.getSingle($routeParams.member_id)
@@ -45,8 +21,10 @@
     //retrieve all the heroes
     Heroes.get()
       .success(function(data) {
-        vm.allHeroes = data;
+        vm.newHeroInfo.allHeroes = data;
       });
+    //retrieve all the degrees
+    vm.newHeroInfo.degrees = Degrees.get()
 
     function degreeCompare(a, b) {
       return a.degree - b.degree;

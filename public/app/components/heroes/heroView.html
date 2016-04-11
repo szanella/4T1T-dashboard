@@ -1,5 +1,28 @@
 <header active-option="heroes"></header>
 <h1>{{vm.hero.name}}</h1>
-<div class="row">
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Proficiency</h2>
+        <table class="table table-bordered">
+          <tr>
+            <th>Player</th>
+            <th>Role</th>
+          </tr>
+          <tr ng-repeat="player in vm.hero.players" class="{{player.degree | degreeClassSuffix}}">
+            <td>{{player.name}}</td>
+            <td>{{player.position | roleLabel}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-4">
+        <h2>Good with</h2>
 
+      </div>
+      <div class="col-md-4">
+        <h2>Good against</h2>
+      </div>
+    </div>
+  </div>
 </div>

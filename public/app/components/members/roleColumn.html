@@ -1,8 +1,7 @@
 <div class="col-md-2 col-sm-12 col-xs-12 row-eq-height role-column">
   <h3>{{vm.role.label}}</h3>
   <ul class="list-group">
-    <li ng-repeat="hero in vm.heroes" class="list-group-item clearfix no-gutter"
-        ng-class="{'list-group-item-success': hero.degree === 1, 'list-group-item-warning': hero.degree === 2, 'list-group-item-danger': hero.degree === 3}">
+    <li ng-repeat="hero in vm.heroes" class="list-group-item clearfix no-gutter list-group-item-{{hero.degree | degreeClassSuffix}}">
       <span class="text-left" ng-class="{'col-md-9' : vm.editMode}">{{hero.name}}</span>
       <span class="pull-right col-md-3" ng-show="vm.editMode">
         <button class="btn btn-sm btn-danger" ng-click="vm.deleteHeroFromFavourites({role: vm.role.id, hero: hero.name})">
@@ -25,13 +24,11 @@
             <div class="modal-body">
               <label for="add{{vm.role.label}}HeroName">Hero</label>
               <select class="form-control" ng-model="vm.newHero.hero" id="add{{vm.role.label}}HeroName">
-                <option ng-repeat="hero in vm.allHeroes" value="{{hero.name}}">{{hero.name}}</option>
+                <option ng-repeat="hero in vm.newHeroInfo.allHeroes" value="{{hero.name}}">{{hero.name}}</option>
               </select>
               <label for="add{{vm.role.label}}HeroDegree">Degree</label>
               <select class="form-control" ng-model="vm.newHero.degree" id="add{{vm.role.label}}HeroDegree">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option ng-repeat="degree in vm.newHeroInfo.degrees" value="{{degree.value}}">{{degree.value}}</option>
               </select>
             </div>
             <div class="modal-footer">
