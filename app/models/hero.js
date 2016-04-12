@@ -5,7 +5,7 @@
     var interactionSchema = new Schema({
           hero : String,
           notes : String
-        }),
+        }, {_id: false}),
         heroSchema = new Schema({
         name : {
           type : String,

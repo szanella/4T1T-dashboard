@@ -20,8 +20,20 @@
         create : function(heroData) {
           return $http.post('/api/heroes', heroData);
         },
+        addGoodWith : function(id, heroData) {
+          return $http.post('/api/heroes/' + id + '/goodwith', heroData);
+        },
+        addGoodAgainst : function(id, heroData) {
+          return $http.post('/api/heroes/' + id + '/goodagainst', heroData);
+        },
         delete : function(id) {
           return $http.delete('/api/heroes/' + id);
+        },
+        removeGoodWith : function(id, name) {
+          return $http.delete('/api/heroes/' + id + '/goodwith/' + name);
+        },
+        removeGoodAgainst : function(id, name) {
+          return $http.delete('/api/heroes/' + id + '/goodagainst/' + name);
         }
       };
     };

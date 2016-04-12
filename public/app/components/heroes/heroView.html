@@ -1,9 +1,17 @@
 <header active-option="heroes"></header>
 <h1>{{vm.hero.name}}</h1>
 <div class="panel panel-default">
+  <div class="panel-heading clearfix">
+    <h2 class="panel-title pull-left">Players and Interactions</h2>
+    <span class="pull-right">
+      <button class="btn btn-sm" ng-click="vm.toggleEditMode()" ng-class="{'btn-primary' : vm.editMode, 'btn-info' : !vm.editMode}">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </button>
+    </span>
+  </div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-12 col-xs-12">
         <h2>Proficiency</h2>
         <table class="table table-bordered">
           <tr>
@@ -16,12 +24,91 @@
           </tr>
         </table>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-12 col-xs-12">
         <h2>Good with</h2>
-
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th>Hero</th>
+            <th>Notes</th>
+          </tr>
+          <tr ng-repeat="hero in vm.hero.goodWith">
+            <td>{{hero.hero}}</td>
+            <td>{{hero.notes}}</td>
+            <td ng-show="vm.editMode" class="text-center">
+              <button class="btn btn-sm btn-danger" ng-click="vm.removeGoodWith(hero.hero)">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </td>
+          </tr>
+        </table>
+        <button ng-show="vm.editMode" type="button" class="btn btn-primary" data-toggle="modal" data-target=".addGoodWith">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
+        </button>
+        <div class="modal fade addGoodWith" tabindex="-1" role="dialog" aria-labelledby="addGoodWithLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addGoodWithLabel">Add Good Hero With {{vm.hero.name}}</h4>
+              </div>
+              <div class="modal-body">
+                <label for="addGoodWithName">Hero</label>
+                <select class="form-control" ng-model="vm.newHero.hero" id="addGoodWithName">
+                  <option ng-repeat="hero in vm.newHeroInfo.allHeroes" value="{{hero.name}}">{{hero.name}}</option>
+                </select>
+                <label for="addGoodWithNotes">Notes</label>
+                <textarea class="form-control" ng-model="vm.newHero.notes" id="addGoodWithNotes"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.eraseNewHero()">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.addGoodWithAndErase()">Add hero</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-12 col-xs-12">
         <h2>Good against</h2>
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th>Hero</th>
+            <th>Notes</th>
+          </tr>
+          <tr ng-repeat="hero in vm.hero.goodAgainst">
+            <td>{{hero.hero}}</td>
+            <td>{{hero.notes}}</td>
+            <td ng-show="vm.editMode" class="text-center">
+              <button class="btn btn-sm btn-danger" ng-click="vm.removeGoodAgainst(hero.hero)">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </td>
+          </tr>
+        </table>
+        <button ng-show="vm.editMode" type="button" class="btn btn-primary" data-toggle="modal" data-target=".addGoodAgainst">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
+        </button>
+        <div class="modal fade addGoodAgainst" tabindex="-1" role="dialog" aria-labelledby="addGoodAgainstLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addGoodAgainstLabel">Add Good Hero Against {{vm.hero.name}}</h4>
+              </div>
+              <div class="modal-body">
+                <label for="addGoodAgainstName">Hero</label>
+                <select class="form-control" ng-model="vm.newHero.hero" id="addGoodAgainstName">
+                  <option ng-repeat="hero in vm.newHeroInfo.allHeroes" value="{{hero.name}}">{{hero.name}}</option>
+                </select>
+                <label for="addGoodAgainstNotes">Notes</label>
+                <textarea class="form-control" ng-model="vm.newHero.notes" id="addGoodAgainstNotes"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.eraseNewHero()">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.addGoodAgainstAndErase()">Add hero</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -62,8 +62,6 @@ module.exports = function(apiRoutes) {
   });
 
   apiRoutes.post('/heroes', function(req, res) {
-    console.log("ADDING HERO");
-
     Hero.create({
       name : req.body.name,
       mainAttr : req.body.mainAttr,
@@ -83,7 +81,52 @@ module.exports = function(apiRoutes) {
         });
       }
     });
+  });
 
+  apiRoutes.post('/heroes/:hero_id/goodwith', function(req, res) {
+    Hero.findByIdAndUpdate(
+      req.params.hero_id,
+      {$push : {goodWith : {hero: req.body.hero, notes : req.body.notes}}},
+      function(err, result) {
+        if (err) {
+          res.status(500).send(err);
+        }
+        else {
+          Hero.findById(req.params.hero_id, {goodWith: 1},
+            function(err, goodWith) {
+              if (err) {
+                res.status(500).send(err);
+              }
+              else {
+                res.json(goodWith.goodWith);
+              }
+            });
+        }
+      }
+    );
+  });
+
+  apiRoutes.post('/heroes/:hero_id/goodagainst', function(req, res) {
+    Hero.findByIdAndUpdate(
+      req.params.hero_id,
+      {$push : {goodAgainst : {hero: req.body.hero, notes : req.body.notes}}},
+      function(err, result) {
+        if (err) {
+          res.status(500).send(err);
+        }
+        else {
+          Hero.findById(req.params.hero_id, {goodAgainst: 1},
+            function(err, goodAgainst) {
+              if (err) {
+                res.status(500).send(err);
+              }
+              else {
+                res.json(goodAgainst.goodAgainst);
+              }
+            });
+        }
+      }
+    );
   });
 
   apiRoutes.delete('/heroes/:hero_id', function(req, res) {
@@ -103,5 +146,51 @@ module.exports = function(apiRoutes) {
         }
       });
     });
+  });
+
+  apiRoutes.delete('/heroes/:hero_id/goodwith/:goodwith_name', function(req, res) {
+    Hero.update(
+      {_id : req.params.hero_id},
+      {$pull : {goodWith : {hero : req.params.goodwith_name}}},
+      function(err, todo) {
+        if (err) {
+          res.status(500).send(err);
+        }
+        else {
+          Hero.findById(req.params.hero_id, {goodWith: 1},
+            function(err, goodWith) {
+              if (err) {
+                res.status(500).send(err);
+              }
+              else {
+                res.json(goodWith.goodWith);
+              }
+            });
+        }
+      }
+    );
+  });
+
+  apiRoutes.delete('/heroes/:hero_id/goodagainst/:goodagainst_name', function(req, res) {
+    Hero.update(
+      {_id : req.params.hero_id},
+      {$pull : {goodAgainst : {hero : req.params.goodagainst_name}}},
+      function(err, todo) {
+        if (err) {
+          res.status(500).send(err);
+        }
+        else {
+          Hero.findById(req.params.hero_id, {goodAgainst: 1},
+            function(err, goodAgainst) {
+              if (err) {
+                res.status(500).send(err);
+              }
+              else {
+                res.json(goodAgainst.goodAgainst);
+              }
+            });
+        }
+      }
+    );
   });
 };
