@@ -12,11 +12,14 @@ function PredictionHelper(modules, picks, bans) {
     for(i=0; i < newSugg.length; i++) {
       for(j=0; j < suggestions.length; j+=1) {
         if(suggestions[j].hero === newSugg[i].hero) {
-          suggestions[j].reasons.push(newSugg[i].reason);
+          suggestions[j].reasons = suggestions[j].reasons.concat((newSugg[i].reasons));
         }
       }
       if(j < newSugg.length) {
-        suggestions.push(newSugg[i]);
+        suggestions.push({
+          hero: newSugg[i].hero,
+          reasons: newSugg[i].reasons
+        });
       }
     }
   }

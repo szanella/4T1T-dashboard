@@ -1,5 +1,6 @@
 var PredictionHelper = require('../libs/predictions/predictionHelper');
 var InteractionModule = require('../libs/predictions/predictionModules/interactionModule');
+var ProficiencyModule = require('../libs/predictions/predictionModules/proficiencyModule');
 
 module.exports = function(apiRoutes) {
   apiRoutes.get('/predictions/pick', function(req, res) {
@@ -26,7 +27,7 @@ module.exports = function(apiRoutes) {
       yours: req.query.ybans,
       enemy: req.query.ebans
     };
-    var predHelper = new PredictionHelper([new InteractionModule()], picks, bans);
+    var predHelper = new PredictionHelper([new InteractionModule(), new ProficiencyModule()], picks, bans);
 
     predHelper.getPickSuggestion().then(
       function(result) {

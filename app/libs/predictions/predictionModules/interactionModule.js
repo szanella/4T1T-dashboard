@@ -24,7 +24,7 @@ function InteractionModule() {
                 }
                 sugg.push({
                   hero: hero.hero,
-                  reason: reason
+                  reasons: [reason]
                 });
               });
             }
