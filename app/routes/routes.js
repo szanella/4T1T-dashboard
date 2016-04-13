@@ -1,7 +1,7 @@
 module.exports = function(app) {
   var express  = require('express'), apiRoutes = express.Router();
   require('./auth.routes.js')(apiRoutes, app);
-  //TODO include routes protection
+  require('./predictions.routes.js')(apiRoutes);
   require('./protect.routes.js')(apiRoutes, app);
   require('./heroes.routes.js')(apiRoutes);
   require('./members.routes.js')(apiRoutes);

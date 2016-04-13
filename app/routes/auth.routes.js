@@ -4,7 +4,6 @@ var jwt    = require('jsonwebtoken');
 
 module.exports = function(apiRoutes, app) {
   apiRoutes.post('/authenticate', function(req, res) {
-    console.log(req.body.name, req.body.password);
     Member.findOne({
       name: req.body.name
     }, function(err, member) {

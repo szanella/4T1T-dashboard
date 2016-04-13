@@ -17,6 +17,7 @@
         },
         goodWith : [interactionSchema],
         goodAgainst : [interactionSchema],
+        badAgainst : [interactionSchema],
         imgPrefix : String
     }, {
       collection : 'heroes'

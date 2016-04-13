@@ -92,13 +92,24 @@ module.exports = function(apiRoutes) {
           res.status(500).send(err);
         }
         else {
-          Hero.findById(req.params.hero_id, {goodWith: 1},
-            function(err, goodWith) {
+          Hero.findById(req.params.hero_id, {name: 1, goodWith: 1},
+            function(err, updatedHero) {
               if (err) {
                 res.status(500).send(err);
               }
               else {
-                res.json(goodWith.goodWith);
+                Hero.update(
+                  {name: req.body.hero},
+                  {$push : {goodWith : {hero: updatedHero.name, notes : req.body.notes}}},
+                  function(err, result) {
+                    if (err) {
+                      res.status(500).send(err);
+                    }
+                    else {
+                      res.json(updatedHero.goodWith);
+                    }
+                  }
+                );
               }
             });
         }
@@ -115,13 +126,24 @@ module.exports = function(apiRoutes) {
           res.status(500).send(err);
         }
         else {
-          Hero.findById(req.params.hero_id, {goodAgainst: 1},
-            function(err, goodAgainst) {
+          Hero.findById(req.params.hero_id, {name: 1, goodAgainst: 1},
+            function(err, updatedHero) {
               if (err) {
                 res.status(500).send(err);
               }
               else {
-                res.json(goodAgainst.goodAgainst);
+                Hero.update(
+                  {name: req.body.hero},
+                  {$push : {badAgainst : {hero: updatedHero.name, notes : req.body.notes}}},
+                  function(err, result) {
+                    if (err) {
+                      res.status(500).send(err);
+                    }
+                    else {
+                      res.json(updatedHero.goodAgainst);
+                    }
+                  }
+                );
               }
             });
         }

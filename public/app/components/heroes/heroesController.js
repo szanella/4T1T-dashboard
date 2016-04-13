@@ -8,7 +8,7 @@
 
       //Pagination related variables
       vm.currentPage = 0;
-      vm.itemsPerPage = 10;
+      vm.itemsPerPage = 15;
 
       vm.goToPage = function(page) {
         if(page < vm.pages.length) {

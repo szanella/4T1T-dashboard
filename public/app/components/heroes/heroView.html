@@ -1,13 +1,8 @@
 <header active-option="heroes"></header>
 <h1>{{vm.hero.name}}</h1>
 <div class="panel panel-default">
-  <div class="panel-heading clearfix">
-    <h2 class="panel-title pull-left">Players and Interactions</h2>
-    <span class="pull-right">
-      <button class="btn btn-sm" ng-click="vm.toggleEditMode()" ng-class="{'btn-primary' : vm.editMode, 'btn-info' : !vm.editMode}">
-        <span class="glyphicon glyphicon-pencil"></span>
-      </button>
-    </span>
+  <div class="panel-heading">
+    <h2 class="panel-title">Players</h2>
   </div>
   <div class="panel-body">
     <div class="row">
@@ -24,6 +19,20 @@
           </tr>
         </table>
       </div>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading clearfix">
+    <h2 class="panel-title pull-left">Players and Interactions</h2>
+    <span class="pull-right">
+      <button class="btn btn-sm" ng-click="vm.toggleEditMode()" ng-class="{'btn-primary' : vm.editMode, 'btn-info' : !vm.editMode}">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </button>
+    </span>
+  </div>
+  <div class="panel-body">
+    <div class="row">
       <div class="col-md-4 col-sm-12 col-xs-12">
         <h2>Good with</h2>
         <table class="table table-bordered table-striped">
@@ -109,6 +118,19 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <h2>Bad against</h2>
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th>Hero</th>
+            <th>Notes</th>
+          </tr>
+          <tr ng-repeat="hero in vm.hero.badAgainst">
+            <td>{{hero.hero}}</td>
+            <td>{{hero.notes}}</td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
