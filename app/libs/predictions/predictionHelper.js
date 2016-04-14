@@ -19,6 +19,7 @@ function PredictionHelper(modules, picks, bans) {
         if(suggestions[j].hero === newSugg[i].hero) {
           suggestions[j].reasons = suggestions[j].reasons.concat((newSugg[i].reasons));
           suggestions[j].weight += totWeight;
+          break;
         }
       }
       if(j >= suggestions.length) {
