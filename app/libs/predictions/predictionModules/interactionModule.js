@@ -5,7 +5,7 @@ function InteractionModule() {
   var self = this;
   AbstractPredictionModule.apply(this, Array.prototype.slice.call(arguments));
 
-  function interactionPromise(pbStruct, basedOnWhat, basedOnFaction, interactionType, reasonPrefix) {
+  function interactionPromise(pbStruct, basedOnWhat, basedOnFaction, interactionType, reasonPrefix, reasonWeight) {
     return new Promise(function(resolve, reject) {
       var sugg = [];
       pbStruct[basedOnWhat][basedOnFaction].forEach(function(pb) {
@@ -18,10 +18,12 @@ function InteractionModule() {
             //find picks good with own picks
             if(dbHero[interactionType]) {
               dbHero[interactionType].forEach(function(hero) {
-                var reason = reasonPrefix + pb;
+                var reason = {};
+                reason.label = reasonPrefix + pb;
                 if(hero.notes) {
-                  reason += ' - ' + hero.notes;
+                  reason.label += ' - ' + hero.notes;
                 }
+                reason.weight = reasonWeight;
                 sugg.push({
                   hero: hero.hero,
                   reasons: [reason]
@@ -46,11 +48,11 @@ function InteractionModule() {
         //own-picks-based subpromise
         if(picks.yours && picks.yours.length > 0) {
           //Picks that are good with our picks
-          subPromises.push(new interactionPromise(pbStructure, 'picks', 'yours', 'goodWith', 'Good pick with '));
+          subPromises.push(new interactionPromise(pbStructure, 'picks', 'yours', 'goodWith', 'Good pick with ', 1));
         }
         if(picks.enemy && picks.enemy.length > 0) {
           //Picks that are good against their picks
-          subPromises.push(new interactionPromise(pbStructure, 'picks', 'enemy', 'badAgainst', 'Good pick against '));
+          subPromises.push(new interactionPromise(pbStructure, 'picks', 'enemy', 'badAgainst', 'Good pick against ', 1));
         }
       }
 

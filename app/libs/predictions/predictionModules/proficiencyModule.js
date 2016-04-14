@@ -29,19 +29,25 @@ function ProficiencyModule() {
               reasons: []
             };
             heroProf.players.forEach(function(player) {
-              var profAdverb;
+              var profAdverb, reasonWeight;
               switch(player.degree) {
                 case 1:
                   profAdverb = 'very well';
+                  reasonWeight = 0.3;
                   break;
                 case 2:
                   profAdverb = 'quite well';
+                  reasonWeight = 0.15;
                   break;
                 case 3:
                   profAdverb = 'decently';
                   break;
+                  reasonWeight = 0.075;
               }
-              sugg.reasons.push(player.name + ' can play it ' + profAdverb + ' (' + player.position + ')');
+              sugg.reasons.push({
+                label: player.name + ' can play it ' + profAdverb + ' (' + player.position + ')',
+                weight: reasonWeight
+              });
             });
             suggestions.push(sugg);
           });

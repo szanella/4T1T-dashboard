@@ -8,23 +8,40 @@ function PredictionHelper(modules, picks, bans) {
   }
 
   function incrementSuggestions(suggestions, newSugg) {
-    var i, j;
+    var i, j, k, totWeight;
+
     for(i=0; i < newSugg.length; i++) {
+      totWeight = 0
+      for(k=0; k < newSugg[i].reasons.length; k+=1) {
+         totWeight += newSugg[i].reasons[k].weight;
+      }
       for(j=0; j < suggestions.length; j+=1) {
         if(suggestions[j].hero === newSugg[i].hero) {
           suggestions[j].reasons = suggestions[j].reasons.concat((newSugg[i].reasons));
+          suggestions[j].weight += totWeight;
         }
       }
       if(j < newSugg.length) {
         suggestions.push({
           hero: newSugg[i].hero,
-          reasons: newSugg[i].reasons
+          reasons: newSugg[i].reasons,
+          weight: totWeight
         });
       }
     }
   }
 
-  function filterSuggestions(suggestions) {
+  function compareSuggestions(sugg1, sugg2) {
+    if(sugg1.weight < sugg2.weight) {
+      return 1;
+    }
+    if(sugg1.weight > sugg2.weight) {
+      return -1;
+    }
+    return 0;
+  }
+
+  function filterSuggestions(suggestions, limitTo) {
     var i, j, allPickedBanned = [];
     if(self.picks) {
       allPickedBanned = allPickedBanned.concat(self.picks.yours, self.picks.enemy);
@@ -40,7 +57,14 @@ function PredictionHelper(modules, picks, bans) {
         }
       }
     }
+    suggestions.sort(compareSuggestions);
+    if(limitTo) {
+      suggestions = suggestions.slice(0, limitTo);
+    }
+
+    return suggestions;
   }
+
   PredictionHelper.prototype.getPickSuggestion = function() {
     var pickSuggPromise, modulePromises = [];
     pickSuggPromise = new Promise(function(resolve, reject) {
@@ -64,7 +88,7 @@ function PredictionHelper(modules, picks, bans) {
           suggestions.forEach(function(suggestion) {
             incrementSuggestions(result, suggestion);
           });
-          filterSuggestions(result);
+          result = filterSuggestions(result, 10);
           resolve(result);
         },
         function(err) {
