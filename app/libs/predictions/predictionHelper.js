@@ -21,7 +21,7 @@ function PredictionHelper(modules, picks, bans) {
           suggestions[j].weight += totWeight;
         }
       }
-      if(j < newSugg.length) {
+      if(j > suggestions.length) {
         suggestions.push({
           hero: newSugg[i].hero,
           reasons: newSugg[i].reasons,
