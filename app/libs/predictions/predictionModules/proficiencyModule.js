@@ -41,8 +41,8 @@ function ProficiencyModule() {
                   break;
                 case 3:
                   profAdverb = 'decently';
-                  break;
                   reasonWeight = 0.075;
+                  break;
               }
               sugg.reasons.push({
                 label: player.name + ' can play it ' + profAdverb + ' (' + player.position + ')',

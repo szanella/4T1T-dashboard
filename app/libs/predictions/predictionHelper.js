@@ -88,7 +88,7 @@ function PredictionHelper(modules, picks, bans) {
           suggestions.forEach(function(suggestion) {
             incrementSuggestions(result, suggestion);
           });
-          result = filterSuggestions(result, 10);
+          result = filterSuggestions(result, 15);
           resolve(result);
         },
         function(err) {
