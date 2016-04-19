@@ -60,10 +60,7 @@ function ProficiencyModule() {
   };
 
   ProficiencyModule.prototype.getBanSuggestion = function(picks, bans) {
-    return [{
-      hero: 'Outworld Devourer',
-      reason: 'cuz fuq dat guy'
-    }];
+    return Promise.resolve([]);
   };
 };
 ProficiencyModule.prototype = new AbstractPredictionModule();

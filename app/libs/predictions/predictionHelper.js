@@ -102,15 +102,38 @@ function PredictionHelper(modules, picks, bans) {
   };
 
   PredictionHelper.prototype.getBanSuggestion = function() {
-    var suggestions = [];
+    var banSuggPromise, modulePromises = [];
+    banSuggPromise = new Promise(function(resolve, reject) {
+      self.predictionModules.forEach(function(module) {
+        var modulePromise = new Promise(function(resolve, reject) {
+          module.getBanSuggestion(self.picks, self.bans).then(
+            function(result) {
+              resolve(result);
+            },
+            function(err) {
+              reject(err);
+            }
+          );
+        });
+        modulePromises.push(modulePromise);
+      });
 
-    this.predictionModules.forEach(function(module) {
-      var moduleSuggestion = module.getBanSuggestion(self.picks, self.bans);
-      incrementSuggestions(suggestions, moduleSuggestion);
+      Promise.all(modulePromises).then(
+        function(suggestions) {
+          var result = [];
+          suggestions.forEach(function(suggestion) {
+            incrementSuggestions(result, suggestion);
+          });
+          result = filterSuggestions(result, 15);
+          resolve(result);
+        },
+        function(err) {
+          reject(err);
+        }
+      );
     });
-    filterSuggestions(suggestions);
 
-    return suggestions;
+    return banSuggPromise;
   };
 };
 

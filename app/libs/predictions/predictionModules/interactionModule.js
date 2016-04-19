@@ -74,10 +74,47 @@ function InteractionModule() {
   };
 
   InteractionModule.prototype.getBanSuggestion = function(picks, bans) {
-    return [{
-      hero: 'Outworld Devourer',
-      reason: 'cuz fuq dat guy'
-    }];
+    var banSuggPromise, subPromises = [], pbStructure = {picks: picks, bans: bans};
+
+
+
+    banSuggPromise = new Promise(function(resolve, reject) {
+      //picks-based subpromises
+      if(picks) {
+        //your-picks-based subpromise
+        if(picks.yours && picks.yours.length > 0) {
+          //Picks that are good against our picks
+          subPromises.push(new interactionPromise(pbStructure, 'picks', 'yours', 'badAgainst', 'Good against your ', 1));
+        }
+          //enemy-picks-based subpromise
+        if(picks.enemy && picks.enemy.length > 0) {
+          //Picks that are good with their picks
+          subPromises.push(new interactionPromise(pbStructure, 'picks', 'enemy', 'goodWith', 'Good with their ', 1));
+        }
+      }
+      //bans-based subpromises
+      if(bans) {
+        if(bans.enemy && bans.enemy.length > 0) {
+          //Picks that their bans are good against
+          subPromises.push(new interactionPromise(pbStructure, 'bans', 'enemy', 'goodAgainst', 'Bad against their banned ', 1));
+        }
+      }
+
+      Promise.all(subPromises).then(
+        function(result) {
+          var suggestions = [];
+          result.forEach(function(res) {
+            suggestions = suggestions.concat(res);
+          });
+          resolve(suggestions);
+        },
+        function(err) {
+          reject(err);
+        }
+      );
+    });
+
+    return banSuggPromise;
   };
 };
 InteractionModule.prototype = new AbstractPredictionModule();
