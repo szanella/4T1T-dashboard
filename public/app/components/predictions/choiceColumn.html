@@ -1,0 +1,39 @@
+<div class="col-md-6 col-sm-6 col-xs-12 row-eq-height role-column">
+  <h3>{{vm.choiceInfo.label}}</h3>
+  <ul class="list-group">
+    <li ng-repeat="hero in vm.heroes" class="list-group-item clearfix no-gutter">
+      <span class="text-left" class="col-md-9">{{hero.hero}}</span>
+      <span class="pull-right col-md-3">
+        <button class="btn btn-sm btn-danger" ng-click="vm.deleteChoice({choiceType: vm.choiceInfo.choiceType, team: vm.choiceInfo.team, hero: hero.hero})">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </span>
+    </li>
+
+    <li class="list-group-item">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".add{{vm.choiceInfo.team}}{{vm.choiceInfo.choiceType}}">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
+      </button>
+      <div class="modal fade add{{vm.choiceInfo.team}}{{vm.choiceInfo.choiceType}}" tabindex="-1" role="dialog" aria-labelledby="add{{vm.choiceInfo.team}}{{vm.choiceInfo.choiceType}}Label">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="add{{vm.choiceInfo.team}}{{vm.choiceInfo.choiceType}}Label">Add {{vm.choiceInfo.choiceType}}</h4>
+            </div>
+            <div class="modal-body">
+              <label for="addChoiceName">Hero</label>
+              <select class="form-control" ng-model="vm.newHero.hero" id="add{{vm.choiceInfo.team}}{{vm.choiceInfo.choiceType}}Name">
+                <option ng-repeat="hero in vm.newHeroInfo.allHeroes" value="{{hero.name}}">{{hero.name}}</option>
+              </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.eraseNewHero()">Close</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.addChoiceAndErase()">Add hero</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

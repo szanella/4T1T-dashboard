@@ -34,6 +34,11 @@
             templateUrl: '/app/components/heroes/heroView.html',
             controller: 'HeroCtrl',
             controllerAs: 'vm'
+          }).
+          when('/suggestions', {
+            templateUrl: '/app/components/predictions/predictionsView.html',
+            controller: 'PredictionsCtrl',
+            controllerAs: 'vm'
           });
       }])
 })();

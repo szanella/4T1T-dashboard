@@ -1,0 +1,66 @@
+<header active-option="suggestions"></header>
+<h1>Pick and Ban suggestions</h1>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Picks and bans</h2>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <h2>Yours</h2>
+        <div class="row">
+          <choice-column ng-repeat="choiceInfo in vm.choiceInfo.yours" choice-info="choiceInfo" heroes="vm.picksAndBans[choiceInfo.choiceType].yours" add-choice = "vm.addChoice(choiceType, team, hero)" delete-choice="vm.deleteChoice(choiceType, team, hero)" new-hero-info="vm.newHeroInfo"></choice-column>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <h2>Enemy</h2>
+        <div class="row">
+          <choice-column ng-repeat="choiceInfo in vm.choiceInfo.enemy" choice-info="choiceInfo" heroes="vm.picksAndBans[choiceInfo.choiceType].enemy" add-choice = "vm.addChoice(choiceType, team, hero)" delete-choice="vm.deleteChoice(choiceType, team, hero)" new-hero-info="vm.newHeroInfo"></choice-column>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Suggestions</h2>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <h2>Pick suggestions</h2>
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th>Hero</th>
+            <th>Reasons</th>
+          </tr>
+          <tr ng-repeat="suggestion in vm.suggestions.picks">
+            <td>{{suggestion.hero}}</td>
+            <td>
+              <span ng-if="suggestion.reasons.length === 1">{{suggestion.reasons[0].label}}</span>
+              <ul ng-if="suggestion.reasons.length > 1">
+                <li ng-repeat="reason in suggestion.reasons">{{reason.label}}</li>
+              </ul>
+            </td>
+        </table>
+      </div>
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <h2>Ban suggestions</h2>
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th>Hero</th>
+            <th>Reasons</th>
+          </tr>
+          <tr ng-repeat="suggestion in vm.suggestions.bans">
+            <td>{{suggestion.hero}}</td>
+            <td>
+              <span ng-if="suggestion.reasons.length === 1">{{suggestion.reasons[0].label}}</span>
+              <ul ng-if="suggestion.reasons.length > 1">
+                <li ng-repeat="reason in suggestion.reasons">{{reason.label}}</li>
+              </ul>
+            </td>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

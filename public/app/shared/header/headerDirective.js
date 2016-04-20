@@ -35,6 +35,12 @@
           label: 'Heroes',
           url: '/heroes',
           active: false
+        },
+        {
+          id: 'suggestions',
+          label: 'Pick Suggestions',
+          url: '/suggestions',
+          active: false
         }
       ];
 
